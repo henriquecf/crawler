@@ -1,5 +1,6 @@
 defmodule Crawler.Worker do
   use GenServer
+  require Logger
 
   alias Crawler.Worker.{Fetcher, Parser}
 
@@ -11,6 +12,8 @@ defmodule Crawler.Worker do
     state
     |> Fetcher.fetch()
     |> Parser.parse()
+
+    Logger.info("Crawling para #{state[:url]} finalizado com sucesso")
 
     {:noreply, state}
   end
