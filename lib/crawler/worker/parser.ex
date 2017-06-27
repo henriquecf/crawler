@@ -20,7 +20,8 @@ defmodule Crawler.Worker.Parser do
 
   def parse(_), do: nil
 
-  defp parse_link({"a", [{"href", url}], _}) do
+  defp parse_link({"a", attrs, _}) do
+    {"href", url} = Enum.find(attrs, fn {k, _v} -> k == "href" end)
     Fetcher.fetch(url: url)
   end
 end

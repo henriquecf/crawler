@@ -11,5 +11,10 @@ defdatabase CrawlerDB do
     def find(url) do
       Page.read!(url) |> Enum.at(0)
     end
+
+    def all() do
+      :ets.tab2list(CrawlerDB.Page)
+      |> Enum.map(fn {_, url, body} -> %Page{url: url, body: body} end)
+    end
   end
 end
