@@ -14,7 +14,7 @@ defmodule Crawler.Worker.Fetcher do
         Logger.debug("URL #{url} armazenada com sucesso")
         store_fetched_page(url, body)
       _ ->
-        Logger.warn("URL #{url} não pode ser armazenada")
+        Logger.warn("URL #{url} não pode ser armazenada.")
         false
     end
   end
